@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "JetpackCompose"
 include(":app")
+include(":Core:Theme")
+include(":Core:Logger")
