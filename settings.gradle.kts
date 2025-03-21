@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "JetpackCompose"
 include(":Core:Theme")
 include(":Core:Logger")
-include(":Apps:TaskManager:")
+include(":Apps:TaskManager")
