@@ -66,7 +66,6 @@ dependencies {
 
     implementation(libs.coil.compose)
 
-    implementation(libs.hilt.core)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
