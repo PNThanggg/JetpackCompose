@@ -1,0 +1,21 @@
+package jc.apps.clean_architecture.store.data.repository
+
+import jc.apps.clean_architecture.store.data.mapper.toGeneralError
+import jc.apps.clean_architecture.store.data.remote.ProductsApi
+import jc.apps.clean_architecture.store.domain.model.NetworkError
+import jc.apps.clean_architecture.store.domain.model.Product
+import jc.apps.clean_architecture.store.domain.repository.ProductsRepository
+import jc.apps.clean_architecture.utils.Either
+import javax.inject.Inject
+
+class ProductsRepositoryImpl @Inject constructor(
+    private val productsApi: ProductsApi
+) : ProductsRepository {
+    override suspend fun getProducts(): Either<NetworkError, List<Product>> {
+        return try {
+            Either.Right<List<Product>>(productsApi.getProducts())
+        } catch (e: Exception) {
+            Either.Left(e.toGeneralError())
+        }
+    }
+}
