@@ -22,5 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "JetpackCompose"
 include(":Core:Theme")
 include(":Core:Logger")
+include(":Core:SmoothAnimationBottomBar")
+
 include(":Apps:TaskManager")
 include(":Apps:JCCleanArchitecture")
