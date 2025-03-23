@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import jc.apps.task_manager.ui.home.HomeScreen
 
 @Composable
 fun NavGraph(
@@ -20,7 +21,7 @@ fun NavGraph(
         composable(
             route = AppDestinations.HOME_ROUTE,
         ) { navBackStackEntry ->
-
+            HomeScreen()
         }
     }
 }
