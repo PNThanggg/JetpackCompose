@@ -52,6 +52,17 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.gson)
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp3.logging.interceptor)
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.converter.gson)
+
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
     implementation(project(":Core:Theme"))
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
