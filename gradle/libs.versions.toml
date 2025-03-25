@@ -23,7 +23,6 @@ retrofit = "2.11.0"
 okhttp-logging = "4.12.0"
 okhttp3 = "4.12.0"
 coil-compose = "2.7.0"
-appcompat = "1.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -43,12 +42,12 @@ navigation-compose = { group = "androidx.navigation", name = "navigation-compose
 
 timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
 
-hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "dragger-hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dragger-hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dragger-hilt" }
 
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.0" }
 
 gson = { group = "com.google.code.gson", name = "gson", version = "2.10.1" }
 
@@ -65,7 +64,6 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -74,3 +72,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dragger-hilt" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

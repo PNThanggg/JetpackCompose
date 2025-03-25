@@ -26,3 +26,4 @@ include(":Core:SmoothAnimationBottomBar")
 
 include(":Apps:TaskManager")
 include(":Apps:JCCleanArchitecture")
+include(":Apps:LoLData")
