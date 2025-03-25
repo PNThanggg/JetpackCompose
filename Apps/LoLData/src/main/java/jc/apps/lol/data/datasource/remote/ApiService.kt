@@ -2,12 +2,12 @@ package jc.apps.lol.data.datasource.remote
 
 import jc.apps.lol.data.model.ChampionResponseModel
 import retrofit2.Response
-import retrofit2.http.POST
+import retrofit2.http.GET
 
 interface ApiService {
-    @POST("champion.json")
+    @GET("champion.json")
     suspend fun getAllChampions(): Response<ChampionResponseModel>
 
-    @POST("champion/{name}.json")
+    @GET("champion/{name}.json")
     suspend fun getChampionByName(name: String): Response<ChampionResponseModel>
 }

@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jc.apps.lol.BuildConfig
+import jc.apps.lol.data.datasource.remote.ApiConstants
 import jc.apps.lol.data.datasource.remote.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -31,8 +32,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providerApiService(client: OkHttpClient): ApiService {
-        return Retrofit.Builder()
-            .baseUrl("https://ddragon.leagueoflegends.com/cdn/15.6.1/data/vi_VN/").client(client)
+        return Retrofit.Builder().baseUrl(ApiConstants.BASE_URL).client(client)
             .addConverterFactory(GsonConverterFactory.create()).build()
             .create(ApiService::class.java)
     }
