@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jc.apps.lol.data.model.toChampionList
 import jc.apps.lol.domain.usecase.GetAllChampionsUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,7 +24,8 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
 
-            getChampionsUseCase.invoke().fold(fnL = { failure ->
+            val result = withContext(Dispatchers.IO) { getChampionsUseCase.run() }
+            result.fold(fnL = { failure ->
                 _state.update {
                     it.copy(
                         isLoading = false, error = failure.message

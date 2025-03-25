@@ -17,8 +17,11 @@ class RemoteDataSource @Inject constructor(
         return try {
             val response = apiService.getAllChampions()
             if (response.isSuccessful) {
+                Log.d(TAG, "Response code: ${response.code()}")
+                Log.d(TAG, "Response body: ${response.body()}")
+                Log.d(TAG, "Response error: ${response.errorBody()?.string()}")
+
                 val body = response.body()
-                Log.i(TAG, "Data raw: ${response.raw().body}")
                 if (body != null) {
                     Either.Right(body)
                 } else {
