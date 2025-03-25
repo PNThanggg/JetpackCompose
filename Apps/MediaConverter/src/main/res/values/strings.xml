@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Media Converter</string>
+    <string name="txt_mv_editor">MV Editor</string>
+    <string name="cut_audio">Cut Audio</string>
+    <string name="cut_video">Cut Video</string>
+    <string name="merge_audio">Merge Audio</string>
+    <string name="merge_video">Merge Video</string>
+    <string name="file_converter">File Converter</string>
+    <string name="recent_file">Recent File</string>
+</resources>
