@@ -39,6 +39,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -68,6 +69,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
+    implementation(project(":Core:Common"))
     implementation(project(":Core:Theme"))
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
