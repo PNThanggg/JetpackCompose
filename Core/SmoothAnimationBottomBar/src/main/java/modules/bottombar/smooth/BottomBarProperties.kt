@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.sp
 
 data class BottomBarProperties(
     var backgroundColor: Color = Blue,
+    var height: Dp = 56.dp,
     var indicatorColor: Color = Color.White.copy(alpha = 0.2F),
     var iconTintColor: Color = BlueTint,
     var iconTintActiveColor: Color = Color.White,
