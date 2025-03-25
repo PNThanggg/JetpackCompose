@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                             state = state.value,
                             onValueChange = viewModel::onSearchTextChange,
                             navigate = { name ->
-//                                navController.navigate(ChampionDetails(name))
+                                navController.navigate(ChampionDetails(name))
                             },
                         )
                     }

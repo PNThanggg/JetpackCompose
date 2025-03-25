@@ -73,12 +73,14 @@ fun HomeScreen(
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                     ) {
                         items(state.filteredChampions.ifEmpty { state.champions }.size) { index ->
+                            val list = state.filteredChampions.ifEmpty { state.champions }
+                            val champion = list[index]
                             ChampionCard(
-                                champion = state.filteredChampions.ifEmpty { state.champions }[index],
+                                champion = champion,
                                 modifier = Modifier
                                     .animateItem()
                                     .clickable {
-//                                        champion.name?.let(navigate)
+                                        champion.name?.let(navigate)
                                     },
                             )
                         }

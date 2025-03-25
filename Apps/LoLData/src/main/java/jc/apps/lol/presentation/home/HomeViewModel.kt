@@ -1,6 +1,5 @@
 package jc.apps.lol.presentation.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,8 +10,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-private const val TAG = "HomeViewModel"
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -32,12 +29,6 @@ class HomeViewModel @Inject constructor(
                     )
                 }
             }, fnR = { response ->
-                Log.i(TAG, "$response")
-                Log.i(TAG, "${response.champion}")
-                Log.i(TAG, "${response.format}")
-                Log.i(TAG, "${response.type}")
-                Log.i(TAG, "${response.version}")
-
                 _state.update {
                     it.copy(
                         isLoading = false,
