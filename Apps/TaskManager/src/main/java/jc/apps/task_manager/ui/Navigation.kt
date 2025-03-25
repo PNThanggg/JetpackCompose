@@ -8,6 +8,9 @@ import androidx.navigation.NavHostController
  */
 object AppDestinations {
     const val HOME_ROUTE = "home"
+    const val SETTING_ROUTE = "setting"
+    const val CALENDER_ROUTER = "calender"
+    const val NOTIFICATION_ROUTER = "notification"
 }
 
 /**
