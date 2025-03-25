@@ -55,6 +55,10 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.coil.compose)
+
+    implementation(libs.navigation.compose)
+
     implementation(libs.gson)
     implementation(libs.okhttp3)
     implementation(libs.okhttp3.logging.interceptor)
