@@ -4,6 +4,7 @@ import jc.apps.lol.data.model.ChampionResponseModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 
 interface ApiService {
     @Headers("Content-Type: application/json")
@@ -11,5 +12,5 @@ interface ApiService {
     suspend fun getAllChampions(): Response<ChampionResponseModel>
 
     @GET("champion/{name}.json")
-    suspend fun getChampionByName(name: String): Response<ChampionResponseModel>
+    suspend fun getChampionByName(@Path("name") name: String): Response<ChampionResponseModel>
 }
