@@ -1,10 +1,12 @@
 package jc.apps.lol.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -53,7 +55,15 @@ class MainActivity : ComponentActivity() {
                         route = AppRouter.Detail.route,
                         arguments = listOf(navArgument("name") { type = NavType.StringType })
                     ) { backStackEntry ->
+                        Log.d("TAG", "onCreate: ${backStackEntry.arguments?.getString("name")}")
+                        val name = backStackEntry.arguments?.getString("name")
                         val viewModel by viewModels<ChampionDetailsViewModel>()
+
+                        name?.let {
+                            LaunchedEffect(Unit) {
+                                viewModel.loadChampion(it)
+                            }
+                        }
 
                         viewModel.champion.value?.let {
                             ChampionDetailsScreen(champion = it)
