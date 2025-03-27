@@ -1,10 +1,8 @@
 package jc.apps.lol.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class ImageModel(
-    @SerialName("full") val full: String? = "",
-    @SerialName("group") val group: String? = ""
+    @SerializedName("full") val full: String? = "",
+    @SerializedName("group") val group: String? = ""
 )

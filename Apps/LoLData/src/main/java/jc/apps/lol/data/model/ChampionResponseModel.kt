@@ -1,14 +1,12 @@
 package jc.apps.lol.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class ChampionResponseModel(
-    @SerialName("data") val champion: Map<String, ChampionModel> = emptyMap(),
-    @SerialName("format") val format: String? = "",
-    @SerialName("type") val type: String? = "",
-    @SerialName("version") val version: String? = ""
+    @SerializedName("data") val champion: Map<String, ChampionModel> = emptyMap(),
+    @SerializedName("format") val format: String? = "",
+    @SerializedName("type") val type: String? = "",
+    @SerializedName("version") val version: String? = ""
 )
 
 fun Map<String, ChampionModel>.toChampionList(): List<ChampionModel> = this.values.toList()

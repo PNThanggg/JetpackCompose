@@ -1,18 +1,16 @@
 package jc.apps.lol.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class ChampionModel(
-    @SerialName("id") val id: String? = "",
-    @SerialName("image") val image: ImageModel? = ImageModel(),
-    @SerialName("key") val key: String? = "",
-    @SerialName("lore") val lore: String? = "",
-    @SerialName("blurb") val blurb: String? = "",
-    @SerialName("name") val name: String? = "",
-    @SerialName("passive") val passive: PassiveModel? = PassiveModel(),
-    @SerialName("spells") val spells: List<SpellModel> = listOf(),
-    @SerialName("tags") val tags: List<String> = listOf(),
-    @SerialName("title") val title: String? = ""
+    @SerializedName("id") val id: String? = "",
+    @SerializedName("image") val image: ImageModel? = ImageModel(),
+    @SerializedName("key") val key: String? = "",
+    @SerializedName("lore") val lore: String? = "",
+    @SerializedName("blurb") val blurb: String? = "",
+    @SerializedName("name") val name: String? = "",
+    @SerializedName("passive") val passive: PassiveModel? = PassiveModel(),
+    @SerializedName("spells") val spells: List<SpellModel> = listOf(),
+    @SerializedName("tags") val tags: List<String> = listOf(),
+    @SerializedName("title") val title: String? = ""
 )

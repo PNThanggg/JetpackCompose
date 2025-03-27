@@ -9,7 +9,4 @@ data object Home
 data object Splash
 
 @Serializable
-data object ChampionList
-
-@Serializable
 data class ChampionDetails(val name: String)

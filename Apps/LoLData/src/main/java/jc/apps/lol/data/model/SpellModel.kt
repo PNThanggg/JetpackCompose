@@ -1,12 +1,10 @@
 package jc.apps.lol.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class SpellModel(
-    @SerialName("description") val description: String? = "",
-    @SerialName("id") val id: String? = "",
-    @SerialName("image") val image: ImageModel? = ImageModel(),
-    @SerialName("name") val name: String? = ""
+    @SerializedName("description") val description: String? = "",
+    @SerializedName("id") val id: String? = "",
+    @SerializedName("image") val image: ImageModel? = ImageModel(),
+    @SerializedName("name") val name: String? = ""
 )

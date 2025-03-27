@@ -1,11 +1,9 @@
 package jc.apps.lol.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class PassiveModel(
-    @SerialName("description") val description: String? = "",
-    @SerialName("image") val image: ImageModel? = ImageModel(),
-    @SerialName("name") val name: String? = ""
+    @SerializedName("description") val description: String? = "",
+    @SerializedName("image") val image: ImageModel? = ImageModel(),
+    @SerializedName("name") val name: String? = ""
 )
