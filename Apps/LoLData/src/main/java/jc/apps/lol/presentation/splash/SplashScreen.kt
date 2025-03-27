@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import jc.apps.lol.R
-import jc.apps.lol.presentation.Home
+import jc.apps.lol.presentation.AppRouter
 import kotlinx.coroutines.delay
 
 @Composable
@@ -25,7 +25,7 @@ fun SplashScreen(
     LaunchedEffect(Unit) {
         delay(500)
 
-        navController.navigate(Home) {
+        navController.navigate(AppRouter.Home.route) {
             popUpTo(navController.graph.startDestinationId) { inclusive = true }
         }
     }

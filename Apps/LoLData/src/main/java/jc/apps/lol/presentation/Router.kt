@@ -1,12 +1,11 @@
 package jc.apps.lol.presentation
 
-import kotlinx.serialization.Serializable
+sealed class AppRouter(val route: String) {
+    object Splash : AppRouter("SplashScreen")
 
-@Serializable
-data object Home
+    object Home : AppRouter("Home")
 
-@Serializable
-data object Splash
-
-@Serializable
-data class ChampionDetails(val name: String)
+    object Detail : AppRouter("Detail/{name}") {
+        fun createRoute(name: String) = "Detail/$name"
+    }
+}

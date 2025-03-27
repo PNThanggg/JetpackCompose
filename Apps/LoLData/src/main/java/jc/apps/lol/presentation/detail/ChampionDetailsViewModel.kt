@@ -5,11 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jc.apps.lol.data.model.ChampionModel
 import jc.apps.lol.domain.usecase.GetChampionByNameUseCase
-import jc.apps.lol.presentation.ChampionDetails
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,10 +21,10 @@ class ChampionDetailsViewModel @Inject constructor(
     var champion = mutableStateOf<ChampionModel?>(null)
 
     init {
-        val args = savedStateHandle.toRoute<ChampionDetails>()
+        val name: String = savedStateHandle["name"] ?: "NULL"
 
         viewModelScope.launch {
-            val result = withContext(Dispatchers.IO) { getChampionByNameUseCase.run(args.name) }
+            val result = withContext(Dispatchers.IO) { getChampionByNameUseCase.run(name) }
             result.fold(fnL = { failure ->
                 Log.d("TAG", "ChampionDetailsViewModel: ${failure.message}")
             }, fnR = { response ->

@@ -6,9 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
 import jc.apps.lol.presentation.detail.ChampionDetailsScreen
 import jc.apps.lol.presentation.detail.ChampionDetailsViewModel
@@ -26,14 +28,14 @@ class MainActivity : ComponentActivity() {
             JetpackComposeTheme {
                 val navController = rememberNavController()
 
-                NavHost(navController = navController, startDestination = Splash) {
-                    composable<Splash> {
+                NavHost(navController = navController, startDestination = AppRouter.Splash.route) {
+                    composable(AppRouter.Splash.route) {
                         SplashScreen(
                             navController = navController,
                         )
                     }
 
-                    composable<Home> {
+                    composable(AppRouter.Home.route) {
                         val viewModel by viewModels<HomeViewModel>()
 
                         val state = viewModel.state.collectAsStateWithLifecycle()
@@ -42,12 +44,15 @@ class MainActivity : ComponentActivity() {
                             state = state.value,
                             onValueChange = viewModel::onSearchTextChange,
                             navigate = { name ->
-                                navController.navigate(ChampionDetails(name))
+                                navController.navigate(AppRouter.Detail.createRoute(name))
                             },
                         )
                     }
 
-                    composable<ChampionDetails> {
+                    composable(
+                        route = AppRouter.Detail.route,
+                        arguments = listOf(navArgument("name") { type = NavType.StringType })
+                    ) { backStackEntry ->
                         val viewModel by viewModels<ChampionDetailsViewModel>()
 
                         viewModel.champion.value?.let {
