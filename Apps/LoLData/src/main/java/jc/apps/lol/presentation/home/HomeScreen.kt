@@ -80,7 +80,9 @@ fun HomeScreen(
                                 modifier = Modifier
                                     .animateItem()
                                     .clickable {
-                                        champion.name?.let(navigate)
+                                        champion.name?.let {
+                                            navigate.invoke(it)
+                                        }
                                     },
                             )
                         }
