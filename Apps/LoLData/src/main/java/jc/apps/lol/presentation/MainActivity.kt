@@ -10,6 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import jc.apps.lol.presentation.detail.ChampionDetailsScreen
+import jc.apps.lol.presentation.detail.ChampionDetailsViewModel
 import jc.apps.lol.presentation.home.HomeScreen
 import jc.apps.lol.presentation.home.HomeViewModel
 import jc.apps.lol.presentation.splash.SplashScreen
@@ -43,6 +45,14 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(ChampionDetails(name))
                             },
                         )
+                    }
+
+                    composable<ChampionDetails> {
+                        val viewModel by viewModels<ChampionDetailsViewModel>()
+
+                        viewModel.champion.value?.let {
+                            ChampionDetailsScreen(champion = it)
+                        }
                     }
                 }
             }
