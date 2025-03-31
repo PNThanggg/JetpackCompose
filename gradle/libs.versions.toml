@@ -39,6 +39,8 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil-compose
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-core-splash = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-core-splash" }
 
+icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version = "1.7.8" }
+
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
