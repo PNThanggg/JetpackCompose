@@ -107,7 +107,7 @@ fun CurrenciesSection() {
                         .background(MaterialTheme.colorScheme.secondary)
                         .clickable {
                             isVisible = !isVisible
-                            iconState = if (isVisible) {
+                            iconState = if (!isVisible) {
                                 Icons.Rounded.KeyboardArrowUp
                             } else {
                                 Icons.Rounded.KeyboardArrowDown
