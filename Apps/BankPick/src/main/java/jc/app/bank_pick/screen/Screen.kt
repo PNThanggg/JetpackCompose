@@ -13,5 +13,9 @@ sealed class Screen(
 
     object Home : Screen("home_screen")
 
+    object Settings : Screen("settings_screen")
+
     object MyCard : Screen("my_card_screen")
+
+    object Statistics : Screen("statistics_screen")
 }

@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import jc.app.bank_pick.screen.cards.MyCardsScreen
 import jc.app.bank_pick.screen.home.HomeScreen
+import jc.app.bank_pick.screen.setting.SettingsScreen
+import jc.app.bank_pick.screen.statistics.StatisticsScreen
 
 @Composable
 fun MainScreen() {
@@ -24,6 +26,10 @@ fun MainScreen() {
             composable(BottomNavItem.Home.route) { HomeScreen() }
 
             composable(BottomNavItem.MyCards.route) { MyCardsScreen() }
+
+            composable(BottomNavItem.Statistics.route) { StatisticsScreen() }
+
+            composable(BottomNavItem.Settings.route) { SettingsScreen() }
         }
     }
 }
