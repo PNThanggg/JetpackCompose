@@ -47,6 +47,8 @@ class MainActivity : ComponentActivity() {
                                 keyboardType = KeyboardType.Number,
                             ),
                         )
+
+                        LoadingAnimation()
                     }
                 }
             }
