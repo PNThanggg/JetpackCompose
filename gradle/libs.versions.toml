@@ -25,6 +25,8 @@ okhttp3 = "4.12.0"
 coil-compose = "2.7.0"
 appcompat = "1.7.0"
 
+androidx-data-store = "1.1.4"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
@@ -69,14 +71,17 @@ firebase-auth = { module = "com.google.firebase:firebase-auth-ktx" }
 
 google-auth = { module = "com.google.android.gms:play-services-auth", version = "21.3.0" }
 
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version = "0.37.2" }
+
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidx-data-store" }
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-version" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-
-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version = "0.37.2" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

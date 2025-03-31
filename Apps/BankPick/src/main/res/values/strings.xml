@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Bank Pick</string>
+
+    <string name="intro_title_1">Fastest Payment in the world</string>
+    <string name="intro_content_1">Integrate multiple payment methods to help you up the process quickly</string>
+
+    <string name="intro_title_2">The most Secure Platform for Customer</string>
+    <string name="intro_content_2">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
+
+    <string name="intro_title_3">Paying for Everything is Easy and Convenient</string>
+    <string name="intro_content_3">Built-in Fingerprint, face recognition and more, keeping you completely safe</string>
 </resources>
