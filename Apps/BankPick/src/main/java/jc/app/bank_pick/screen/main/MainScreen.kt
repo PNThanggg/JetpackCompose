@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import jc.app.bank_pick.screen.cards.MyCardsScreen
 import jc.app.bank_pick.screen.home.HomeScreen
 
 @Composable
@@ -21,6 +22,8 @@ fun MainScreen() {
             startDestination = BottomNavItem.Home.route
         ) {
             composable(BottomNavItem.Home.route) { HomeScreen() }
+
+            composable(BottomNavItem.MyCards.route) { MyCardsScreen() }
         }
     }
 }

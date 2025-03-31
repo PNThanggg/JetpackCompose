@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         BottomNavItem.Home,
+        BottomNavItem.MyCards,
     )
 
     NavigationBar {

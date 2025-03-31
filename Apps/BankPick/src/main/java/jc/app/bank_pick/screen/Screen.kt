@@ -12,4 +12,6 @@ sealed class Screen(
     object Register : Screen("register_screen")
 
     object Home : Screen("home_screen")
+
+    object MyCard : Screen("my_card_screen")
 }
