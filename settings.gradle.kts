@@ -31,5 +31,5 @@ include(":Apps:LoLData")
 include(":Apps:YoutubeAPI")
 include(":Apps:SpotifyApi")
 include(":Apps:SpotifyApi:Network")
-
 include(":Apps:MediaConverter")
+include(":Apps:CircularIndicatorApp")
