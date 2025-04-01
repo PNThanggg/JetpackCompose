@@ -66,7 +66,6 @@ fun IntroScreen(
         }
     }
 
-
     LaunchedEffect(currentIndex) {
         pagerState.animateScrollToPage(currentIndex)
     }
@@ -93,8 +92,6 @@ fun IntroScreen(
                 .padding(bottom = 8.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-
-
             repeat(pagerState.pageCount) { iteration ->
                 val color by animateColorAsState(
                     targetValue = if (pagerState.currentPage == iteration) Color(0xFF0066FF)
@@ -115,7 +112,6 @@ fun IntroScreen(
                 )
             }
         }
-
 
         Spacer(modifier = Modifier.weight(1F))
 
