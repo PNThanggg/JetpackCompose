@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import jc.app.bank_pick.MainActivity
+import jc.app.bank_pick.activity.authentication.AuthenticationActivity
 import jc.app.bank_pick.activity.intro.IntroActivity
 import jc.app.bank_pick.datastore.repository.PreferencesRepository
 import kotlinx.coroutines.delay
@@ -34,30 +35,19 @@ class SplashActivity : ComponentActivity() {
         lifecycleScope.launch {
             delay(500)
 
-//            Intent(this@SplashActivity, MainActivity::class.java).also {
-//                startActivity(it)
-//                finish()
-//            }
-
             preferencesRepository.applicationPreferences.collect { prefs ->
                 if (prefs.firstLaunch) {
                     startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
                 } else {
-                    startActivity(
-                        Intent(
-                            this@SplashActivity, MainActivity::class.java
+                    if (prefs.isLogin) {
+                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    } else {
+                        startActivity(
+                            Intent(
+                                this@SplashActivity, AuthenticationActivity::class.java
+                            )
                         )
-                    )
-
-//                    if (prefs.accessToken.isEmpty()) {
-//                        startActivity(
-//                            Intent(
-//                                this@SplashActivity, AuthenticationActivity::class.java
-//                            )
-//                        )
-//                    } else {
-//                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-//                    }
+                    }
                 }
                 finish()
             }

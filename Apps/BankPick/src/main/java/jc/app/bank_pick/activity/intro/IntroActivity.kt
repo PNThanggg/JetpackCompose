@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import jc.app.bank_pick.MainActivity
+import jc.app.bank_pick.activity.authentication.AuthenticationActivity
 import jc.app.bank_pick.datastore.repository.PreferencesRepository
 import kotlinx.coroutines.launch
 import modules.core.theme.JetpackComposeTheme
@@ -41,7 +41,7 @@ class IntroActivity : ComponentActivity() {
                             }
                         }
 
-                        Intent(this@IntroActivity, MainActivity::class.java).also {
+                        Intent(this@IntroActivity, AuthenticationActivity::class.java).also {
                             startActivity(it)
                             finish()
                         }
