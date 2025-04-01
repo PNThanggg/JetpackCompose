@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackCompose">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.JetpackCompose">
             <intent-filter>
@@ -19,6 +20,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.JetpackCompose" />
+
+        <activity
+            android:name=".activity.intro.IntroActivity"
+            android:exported="true"
+            android:theme="@style/Theme.JetpackCompose" />
+
+        <activity
+            android:name=".activity.authentication.AuthenticationActivity"
+            android:exported="true"
+            android:theme="@style/Theme.JetpackCompose" />
     </application>
 
 </manifest>

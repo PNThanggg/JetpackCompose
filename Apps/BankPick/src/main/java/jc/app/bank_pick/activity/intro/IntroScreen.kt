@@ -1,4 +1,4 @@
-package jc.app.bank_pick.screen.intro
+package jc.app.bank_pick.activity.intro
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun IntroScreen(
-    modifier: Modifier = Modifier, onClick: () -> Unit = {}
+    modifier: Modifier = Modifier,
 ) {
     val pages = listOf(
         OnBoardingPage.First, OnBoardingPage.Second, OnBoardingPage.Third

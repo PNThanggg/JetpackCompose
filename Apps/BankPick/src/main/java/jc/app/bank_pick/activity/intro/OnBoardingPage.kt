@@ -1,4 +1,4 @@
-package jc.app.bank_pick.screen.intro
+package jc.app.bank_pick.activity.intro
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
