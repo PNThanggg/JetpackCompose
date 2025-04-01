@@ -1,9 +1,8 @@
-package jc.app.bank_pick.activity.main.main
+package jc.app.bank_pick.activity.main
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import jc.app.bank_pick.R
-import jc.app.bank_pick.activity.main.Screen
 
 sealed class BottomNavItem(
     val route: String, @DrawableRes val icon: Int, @StringRes val label: Int
