@@ -7,6 +7,11 @@
     <string name="statistics">Statistics</string>
     <string name="settings">Settings</string>
 
+    <string name="sent">Sent</string>
+    <string name="receive">Receive</string>
+    <string name="currency">Currency</string>
+    <string name="topup">Topup</string>
+
     <string name="intro_title_1">Fastest Payment in the world</string>
     <string name="intro_content_1">Integrate multiple payment methods to help you up the process quickly</string>
 

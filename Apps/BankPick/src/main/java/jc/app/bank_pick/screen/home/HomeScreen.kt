@@ -1,5 +1,6 @@
 package jc.app.bank_pick.screen.home
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -47,27 +48,42 @@ fun HomeScreen() {
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             ItemRow(
-                title = "Sent"
+                title = stringResource(R.string.sent),
+                icon = R.drawable.ic_send,
             )
 
             ItemRow(
-                title = "Sent"
+                title = stringResource(R.string.receive),
+                icon = R.drawable.ic_receive,
             )
 
             ItemRow(
-                title = "Sent"
+                title = stringResource(R.string.currency),
+                icon = R.drawable.ic_currency,
             )
 
             ItemRow(
-                title = "Sent"
+                title = stringResource(R.string.topup),
+                icon = R.drawable.ic_topup,
             )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text("Transaction")
+
+            Text("Sell All")
         }
     }
 }
 
 @Composable
 fun ItemRow(
-    modifier: Modifier = Modifier, title: String
+    title: String, @DrawableRes icon: Int
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -82,9 +98,9 @@ fun ItemRow(
             contentAlignment = Alignment.Center,
         ) {
             Image(
-                modifier = Modifier.size(20.dp),
+                modifier = Modifier.size(24.dp),
                 contentDescription = stringResource(R.string.app_name),
-                painter = painterResource(R.drawable.ic_search),
+                painter = painterResource(icon),
             )
         }
 
