@@ -7,12 +7,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
 import jc.app.bank_pick.MainActivity
 import jc.app.bank_pick.datastore.repository.PreferencesRepository
 import kotlinx.coroutines.launch
 import modules.core.theme.JetpackComposeTheme
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class IntroActivity : ComponentActivity() {
     @Inject
     lateinit var preferencesRepository: PreferencesRepository
