@@ -1,13 +1,22 @@
 package jc.app.bank_pick.activity.intro
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.lifecycleScope
+import jc.app.bank_pick.MainActivity
+import jc.app.bank_pick.datastore.repository.PreferencesRepository
+import kotlinx.coroutines.launch
 import modules.core.theme.JetpackComposeTheme
+import javax.inject.Inject
 
 class IntroActivity : ComponentActivity() {
+    @Inject
+    lateinit var preferencesRepository: PreferencesRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,7 +29,22 @@ class IntroActivity : ComponentActivity() {
 
         setContent {
             JetpackComposeTheme {
-                IntroScreen()
+                IntroScreen(
+                    nextScreen = {
+                        lifecycleScope.launch {
+                            preferencesRepository.updateApplicationPreferences {
+                                it.copy(
+                                    firstLaunch = false
+                                )
+                            }
+                        }
+
+                        Intent(this@IntroActivity, MainActivity::class.java).also {
+                            startActivity(it)
+                            finish()
+                        }
+                    },
+                )
             }
         }
     }
