@@ -8,8 +8,6 @@ import timber.log.Timber
 @HiltAndroidApp
 class BankPickApplication : Application() {
     companion object {
-        private const val TAG = "MediaConverterApp"
-
         private class ReleaseTree : Timber.Tree() {
             override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
                 if (priority == Log.VERBOSE || priority == Log.DEBUG) {
@@ -27,7 +25,5 @@ class BankPickApplication : Application() {
         } else {
             Timber.plant(ReleaseTree())
         }
-
-        Timber.tag(TAG).d("onCreate()")
     }
 }
