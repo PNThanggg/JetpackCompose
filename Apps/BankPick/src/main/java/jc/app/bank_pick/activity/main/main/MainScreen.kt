@@ -1,4 +1,4 @@
-package jc.app.bank_pick.screen.main
+package jc.app.bank_pick.activity.main.main
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -7,10 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import jc.app.bank_pick.screen.cards.MyCardsScreen
-import jc.app.bank_pick.screen.home.HomeScreen
-import jc.app.bank_pick.screen.setting.SettingsScreen
-import jc.app.bank_pick.screen.statistics.StatisticsScreen
+import jc.app.bank_pick.activity.main.cards.MyCardsScreen
+import jc.app.bank_pick.activity.main.home.HomeScreen
+import jc.app.bank_pick.activity.main.setting.SettingsScreen
+import jc.app.bank_pick.activity.main.statistics.StatisticsScreen
 
 @Composable
 fun MainScreen() {

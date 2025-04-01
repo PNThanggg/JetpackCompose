@@ -1,4 +1,4 @@
-package jc.app.bank_pick.screen.home
+package jc.app.bank_pick.activity.main.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import jc.app.bank_pick.R
-import jc.app.bank_pick.screen.home.widget.HomeHeader
-import jc.app.bank_pick.screen.home.widget.ItemRow
-import jc.app.bank_pick.widget.CardWidget
+import jc.app.bank_pick.activity.main.home.widget.HomeHeader
+import jc.app.bank_pick.activity.main.home.widget.ItemRow
+import jc.app.bank_pick.activity.main.widget.CardWidget
 
 @Preview(showBackground = true)
 @Composable

@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import jc.app.bank_pick.MainActivity
+import jc.app.bank_pick.activity.main.MainActivity
 import jc.app.bank_pick.activity.authentication.AuthenticationActivity
 import jc.app.bank_pick.activity.intro.IntroActivity
 import jc.app.bank_pick.datastore.repository.PreferencesRepository

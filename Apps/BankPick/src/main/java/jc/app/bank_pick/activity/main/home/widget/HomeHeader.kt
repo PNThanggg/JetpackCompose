@@ -1,4 +1,4 @@
-package jc.app.bank_pick.screen.home.widget
+package jc.app.bank_pick.activity.main.home.widget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

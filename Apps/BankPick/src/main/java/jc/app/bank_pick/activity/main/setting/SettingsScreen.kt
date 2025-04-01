@@ -1,4 +1,4 @@
-package jc.app.bank_pick.screen.statistics
+package jc.app.bank_pick.activity.main.setting
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,11 +8,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun StatisticsScreen() {
+fun SettingsScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        Text("Statistics Screen")
+        Text("Settings Screen")
     }
 }
