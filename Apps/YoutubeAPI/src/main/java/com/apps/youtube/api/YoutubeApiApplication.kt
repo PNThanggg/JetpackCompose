@@ -2,7 +2,6 @@ package com.apps.youtube.api
 
 import android.app.Application
 import android.util.Log
-import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 import modules.logger.AndroidLogAdapter
 import modules.logger.FormatStrategy
@@ -13,8 +12,6 @@ import timber.log.Timber
 @HiltAndroidApp
 class YoutubeApiApplication : Application() {
     companion object {
-        private const val TAG = "MediaConverterApp"
-
         class CustomTree : Timber.Tree() {
             override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
                 if (priority == Log.VERBOSE) {
@@ -61,6 +58,7 @@ class YoutubeApiApplication : Application() {
             Logger.clearLogAdapters()
             val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(false)
+                .tag("YoutubeAPI")
                 .methodCount(0)
                 .methodOffset(3)
                 .build()
@@ -70,9 +68,5 @@ class YoutubeApiApplication : Application() {
         } else {
             Timber.plant(ReleaseTree())
         }
-
-        Timber.tag(TAG).d("onCreate()")
-
-        FirebaseApp.initializeApp(this@YoutubeApiApplication)
     }
 }

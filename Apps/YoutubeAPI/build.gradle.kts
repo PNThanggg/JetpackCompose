@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.google.services)
 }
 
 android {
@@ -12,7 +11,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.apps.youtube.api"
+        applicationId = "com.apps.youtube.api1"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -43,6 +42,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.appcompat)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -60,10 +61,6 @@ dependencies {
     implementation(libs.androidx.core.splash)
 
     implementation(libs.navigation.compose)
-
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.auth)
 
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.runtime.compose)

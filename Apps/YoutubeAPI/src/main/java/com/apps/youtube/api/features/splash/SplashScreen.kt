@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.apps.youtube.api.R
-import com.apps.youtube.api.navigate.Screen
+import com.apps.youtube.api.Screen
 import kotlinx.coroutines.delay
 
 @Composable
