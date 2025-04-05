@@ -93,6 +93,6 @@ fun JetpackComposeTheme(
     }
 
     MaterialTheme(
-        colorScheme = LightColors, typography = Typography, shapes = Shapes, content = content
+        colorScheme = colorScheme, typography = Typography, shapes = Shapes, content = content
     )
 }
