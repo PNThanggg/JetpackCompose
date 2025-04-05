@@ -110,13 +110,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
 
-                        HomeScreen(
-                            state = state.value,
-                            onSignInClick = {
-                                val signInIntent = googleSignInClient.signInIntent
-                                signInLauncher.launch(signInIntent)
-                            },
-                        )
+                        HomeScreen()
                     }
                 }
             }
