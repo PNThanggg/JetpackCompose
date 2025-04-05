@@ -1,12 +1,14 @@
 package com.apps.youtube.api.features.home
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,21 +22,24 @@ import timber.log.Timber
 fun HomeScreen() {
     val isDarkTheme = isSystemInDarkTheme()
 
-    Scaffold { contentPadding ->
-        Column(
-            modifier = Modifier
-                .padding(contentPadding)
-                .background(
-                    if (isDarkTheme) Color.Black else Color.White
-                )
-                .fillMaxSize(),
-        ) {
-            HomeHeader()
+    val insets = WindowInsets.statusBars.asPaddingValues()
+    val statusBarHeight = insets.calculateTopPadding()
 
-            CategoriesLine(
-                openDrawer = {
-                    Timber.tag("HomeScreen").d("Open Drawer")
-                })
-        }
+    Column(
+        modifier = Modifier
+            .background(
+                if (isDarkTheme) Color.Black else Color.White
+            )
+            .fillMaxSize(),
+    ) {
+        Spacer(modifier = Modifier.height(statusBarHeight))
+
+        HomeHeader()
+
+        CategoriesLine(
+            openDrawer = {
+                Timber.tag("HomeScreen").d("Open Drawer")
+            },
+        )
     }
 }

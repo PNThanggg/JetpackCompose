@@ -2,6 +2,7 @@ package com.apps.youtube.api
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -50,6 +51,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         installSplashScreen()
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
 
         signInLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
