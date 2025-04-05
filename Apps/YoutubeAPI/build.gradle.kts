@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +7,14 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
 }
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+private val youtubeApiKey: String = localProperties.getProperty("youtube_api_key") ?: ""
 
 android {
     namespace = "com.apps.youtube.api"
@@ -23,9 +33,16 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+
+            buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+        }
+
+        debug {
+            buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
         }
     }
     compileOptions {
@@ -55,6 +72,12 @@ dependencies {
 
     implementation(libs.timber)
 
+    implementation(libs.gson)
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp3.logging.interceptor)
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.converter.gson)
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
@@ -69,6 +92,7 @@ dependencies {
 
     implementation(project(":Core:Theme"))
     implementation(project(":Core:Logger"))
+    implementation(project(":Core:Common"))
 
     testImplementation(libs.junit)
 
