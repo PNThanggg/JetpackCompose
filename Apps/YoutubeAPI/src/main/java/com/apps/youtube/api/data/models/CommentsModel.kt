@@ -7,7 +7,7 @@ data class CommentThreadListResponse(
     @SerializedName("etag") val etag: String,
     @SerializedName("nextPageToken") val nextPageToken: String?,
     @SerializedName("pageInfo") val pageInfo: PageInfo,
-    @SerializedName("items") val items: List<CommentThread>
+    @SerializedName("items") val items: MutableList<CommentThread>
 ) {
     companion object {
         data class CommentThread(

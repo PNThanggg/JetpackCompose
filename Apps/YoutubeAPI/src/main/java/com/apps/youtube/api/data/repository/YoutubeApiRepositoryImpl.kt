@@ -1,6 +1,7 @@
 package com.apps.youtube.api.data.repository
 
 import com.apps.youtube.api.data.datasource.YouTubeApiService
+import com.apps.youtube.api.data.models.CommentThreadListResponse
 import com.apps.youtube.api.data.models.VideoListResponse
 import com.apps.youtube.api.domain.repository.YoutubeApiRepository
 import modules.common.failure.Failure
@@ -53,6 +54,30 @@ class YoutubeApiRepositoryImpl @Inject constructor(
             )
 
             return Either.Right(videoDetails)
+        } catch (e: Exception) {
+            return Either.Left(ServerError(e.message ?: "Unknown error"))
+        }
+    }
+
+    override suspend fun getComments(
+        videoId: String, pageToken: String?
+    ): Either<Failure, CommentThreadListResponse> {
+        return try {
+            val commentResponse = apiService.getComments(videoId = videoId, pageToken = pageToken)
+
+            if (!commentResponse.isSuccessful) {
+                return Either.Left(ServerError(commentResponse.message()))
+            }
+
+            if (commentResponse.body() == null) {
+                return Either.Left(ServerError("No data found"))
+            }
+
+            if (commentResponse.body()!!.items.isEmpty()) {
+                return Either.Left(ServerError("Failed to load comments or no comments found"))
+            }
+
+            Either.Right(commentResponse.body()!!)
         } catch (e: Exception) {
             return Either.Left(ServerError(e.message ?: "Unknown error"))
         }
