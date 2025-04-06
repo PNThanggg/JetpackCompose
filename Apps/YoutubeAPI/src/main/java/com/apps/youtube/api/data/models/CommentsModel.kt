@@ -10,11 +10,6 @@ data class CommentThreadListResponse(
     @SerializedName("items") val items: List<CommentThread>
 ) {
     companion object {
-        data class PageInfo(
-            @SerializedName("totalResults") val totalResults: Int,
-            @SerializedName("resultsPerPage") val resultsPerPage: Int
-        )
-
         data class CommentThread(
             @SerializedName("kind") val kind: String,
             @SerializedName("etag") val etag: String,

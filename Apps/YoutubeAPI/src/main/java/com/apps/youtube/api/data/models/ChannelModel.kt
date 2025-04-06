@@ -9,11 +9,6 @@ data class ChannelListResponse(
     @SerializedName("items") val items: List<Channel>
 ) {
     companion object {
-        data class PageInfo(
-            @SerializedName("totalResults") val totalResults: Int,
-            @SerializedName("resultsPerPage") val resultsPerPage: Int
-        )
-
         data class Channel(
             @SerializedName("kind") val kind: String,
             @SerializedName("etag") val etag: String,
@@ -33,15 +28,9 @@ data class ChannelListResponse(
         )
 
         data class Thumbnails(
-            @SerializedName("default") val defaultThumb: ThumbnailInfo,
-            @SerializedName("medium") val medium: ThumbnailInfo,
-            @SerializedName("high") val high: ThumbnailInfo
-        )
-
-        data class ThumbnailInfo(
-            @SerializedName("url") val url: String,
-            @SerializedName("width") val width: Int,
-            @SerializedName("height") val height: Int
+            @SerializedName("default") val defaultThumb: Thumbnail,
+            @SerializedName("medium") val medium: Thumbnail,
+            @SerializedName("high") val high: Thumbnail
         )
 
         data class Localized(
