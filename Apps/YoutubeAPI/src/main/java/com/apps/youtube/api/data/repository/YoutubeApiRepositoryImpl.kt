@@ -11,27 +11,50 @@ import javax.inject.Inject
 class YoutubeApiRepositoryImpl @Inject constructor(
     private val apiService: YouTubeApiService,
 ) : YoutubeApiRepository {
-    override suspend fun searchVideos(
+    override suspend fun getVideosWithDetails(
         channelId: String, pageToken: String?
     ): Either<Failure, VideoListResponse> {
-        return try {
-            val response = apiService.searchVideos(
-                channelId = channelId,
-                pageToken = pageToken,
+        try {
+            // Step 1: Fetch video IDs from search endpoint
+            val searchResponse =
+                apiService.searchVideos(channelId = channelId, pageToken = pageToken)
+
+            if (!searchResponse.isSuccessful) {
+                return Either.Left(ServerError(searchResponse.message()))
+            }
+
+            if (searchResponse.body() == null) {
+                return Either.Left(ServerError("No data found"))
+            }
+
+            val videoIds = searchResponse.body()!!.items.map { it.id.videoId }
+            if (videoIds.isEmpty()) {
+                return Either.Left(ServerError("No related video IDs found"))
+            }
+
+            val nextPageToken = searchResponse.body()!!.nextPageToken
+
+            // Step 2: Fetch video details
+            val detailsResponse = apiService.getVideoDetails(id = videoIds.joinToString(","))
+            if (!detailsResponse.isSuccessful) {
+                return Either.Left(ServerError(detailsResponse.message()))
+            }
+
+            if (detailsResponse.body() == null) {
+                return Either.Left(ServerError("No data found"))
+            }
+
+            if (detailsResponse.body()!!.items.isNullOrEmpty()) {
+                Either.Left(ServerError("Failed to load video details"))
+            }
+
+            val videoDetails = detailsResponse.body()!!.copy(
+                nextPageToken = nextPageToken,
             )
 
-            if (response.isSuccessful) {
-                val body = response.body()
-                if (body != null) {
-                    Either.Right(body)
-                } else {
-                    Either.Left(ServerError("No data found"))
-                }
-            } else {
-                Either.Left(ServerError(response.message()))
-            }
+            return Either.Right(videoDetails)
         } catch (e: Exception) {
-            Either.Left(ServerError(e.message ?: "Unknown error"))
+            return Either.Left(ServerError(e.message ?: "Unknown error"))
         }
     }
 }
