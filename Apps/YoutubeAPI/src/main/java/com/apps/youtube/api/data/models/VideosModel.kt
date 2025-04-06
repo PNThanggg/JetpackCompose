@@ -42,12 +42,6 @@ data class VideoListResponse(
             @SerializedName("maxres") val maxres: Thumbnail?
         )
 
-        data class Thumbnail(
-            @SerializedName("url") val url: String?,
-            @SerializedName("width") val width: Int?,
-            @SerializedName("height") val height: Int?
-        )
-
         data class Localized(
             @SerializedName("title") val title: String?,
             @SerializedName("description") val description: String?
@@ -86,11 +80,6 @@ data class VideoListResponse(
             @SerializedName("subscriberCount") val subscriberCount: String?,
             @SerializedName("videoCount") val videoCount: String?,
             @SerializedName("viewCount") val viewCount: String?
-        )
-
-        data class PageInfo(
-            @SerializedName("totalResults") val totalResults: Int?,
-            @SerializedName("resultsPerPage") val resultsPerPage: Int?
         )
     }
 }
