@@ -67,4 +67,16 @@ interface YouTubeApiService {
         @Query("part") part: String = "snippet,statistics",
         @Query("id") id: String
     ): Response<ChannelListResponse>
+
+    @GET("youtube/v3/videos")
+    suspend fun getVideosByCategory(
+        @Query("key") apiKey: String = BuildConfig.YOUTUBE_API_KEY,
+        @Query("part") part: String = "snippet,contentDetails,statistics",
+        @Query("chart") chart: String = "mostPopular",
+        @Query("videoCategoryId") videoCategoryId: String,
+        @Query("regionCode") regionCode: String = "PK",
+        @Query("type") type: String = "video",
+        @Query("maxResults") maxResults: String = "25",
+        @Query("pageToken") pageToken: String? = null
+    ): Response<VideoListResponse>
 }

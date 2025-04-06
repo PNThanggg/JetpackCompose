@@ -18,4 +18,12 @@ interface YoutubeApiRepository {
         query: String,
         pageToken: String?,
     ): Either<Failure, VideoListResponse>
+
+    suspend fun getShorts(
+        query: String, pageToken: String?
+    ): Either<Failure, VideoListResponse>
+
+    suspend fun getVideosByCategory(
+        categoryId: String, pageToken: String?
+    ): Either<Failure, VideoListResponse>
 }

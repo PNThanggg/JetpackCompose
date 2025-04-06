@@ -149,12 +149,102 @@ class YoutubeApiRepositoryImpl @Inject constructor(
 //                }
 //            }
 
-            detailsResponse.body()!!.nextPageToken = nextPageToken
             val videoDetails = detailsResponse.body()!!.copy(
                 nextPageToken = nextPageToken,
             )
 
             return Either.Right(videoDetails)
+        } catch (e: Exception) {
+            return Either.Left(ServerError(e.message ?: "Unknown error"))
+        }
+    }
+
+    override suspend fun getShorts(
+        query: String, pageToken: String?
+    ): Either<Failure, VideoListResponse> {
+        try {
+            // Step 1: Fetch related video IDs
+            val searchResponse = apiService.searchVideoShortWithQuery(
+                query = query,
+                pageToken = pageToken,
+            )
+
+            if (!searchResponse.isSuccessful) {
+                return Either.Left(ServerError(searchResponse.message()))
+            }
+
+            if (searchResponse.body() == null) {
+                return Either.Left(ServerError("Failed to load related videos."))
+            }
+
+            val videoIds = searchResponse.body()!!.items.map { it.id.videoId }
+            if (videoIds.isEmpty()) {
+                return Either.Left(ServerError("No short video IDs found"))
+            }
+
+            val channelIds = searchResponse.body()!!.items.map { it.snippet.channelId }.toSet()
+            if (channelIds.isEmpty()) {
+                return Either.Left(ServerError("No channel IDs found"))
+            }
+
+            val detailsResponse = apiService.getVideoDetails(id = videoIds.joinToString(","))
+
+            if (!detailsResponse.isSuccessful) {
+                return Either.Left(ServerError(detailsResponse.message()))
+            }
+
+            if (detailsResponse.body() == null) {
+                return Either.Left(ServerError("Failed to load short video details."))
+            }
+
+            val channelResponse = apiService.getChannelDetails(id = channelIds.joinToString(","))
+            if (!channelResponse.isSuccessful) {
+                return Either.Left(ServerError(channelResponse.message()))
+            }
+            if (channelResponse.body() == null) {
+                return Either.Left(ServerError("Failed to load short video details."))
+            }
+
+//            val channelDetailsMap = channelResponse.body()!!.items.associateBy { it.id }
+//            detailsResponse.body()!!.items.forEach { videoItem ->
+//                val channelId = videoItem.snippet.channelId
+//                if (channelId != null && channelDetailsMap.containsKey(channelId)) {
+//                    videoItem.channelDetails = channelDetailsMap[channelId]
+//                }
+//            }
+
+            val nextPageToken = searchResponse.body()!!.nextPageToken
+            val videoDetails = detailsResponse.body()!!.copy(
+                nextPageToken = nextPageToken,
+            )
+
+            return Either.Right(videoDetails)
+        } catch (e: Exception) {
+            return Either.Left(ServerError(e.message ?: "Unknown error"))
+        }
+    }
+
+    override suspend fun getVideosByCategory(
+        categoryId: String, pageToken: String?
+    ): Either<Failure, VideoListResponse> {
+        try {
+            val response = apiService.getVideosByCategory(
+                videoCategoryId = categoryId, pageToken = pageToken
+            )
+
+            if (!response.isSuccessful) {
+                return Either.Left(ServerError(response.message()))
+            }
+
+            if (response.body() == null) {
+                return Either.Left(ServerError("No data found"))
+            }
+
+            if (response.body()!!.items.isEmpty()) {
+                return Either.Left(ServerError("No items found in the response"))
+            }
+
+            return Either.Right(response.body()!!)
         } catch (e: Exception) {
             return Either.Left(ServerError(e.message ?: "Unknown error"))
         }
