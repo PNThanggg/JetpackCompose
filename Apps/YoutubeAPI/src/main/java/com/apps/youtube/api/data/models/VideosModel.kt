@@ -7,7 +7,7 @@ data class VideoListResponse(
     @SerializedName("kind") val kind: String?,
     @SerializedName("etag") val etag: String?,
     @SerializedName("items") val items: MutableList<Video> = mutableListOf(),
-    @SerializedName("nextPageToken") var nextPageToken: String?,
+    @SerializedName("nextPageToken") val nextPageToken: String?,
     @SerializedName("pageInfo") val pageInfo: PageInfo?
 ) {
     companion object {
