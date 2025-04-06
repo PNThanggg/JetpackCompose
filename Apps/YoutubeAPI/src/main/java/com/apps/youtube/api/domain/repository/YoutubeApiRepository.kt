@@ -5,7 +5,7 @@ import modules.common.failure.Failure
 import modules.common.functional.Either
 
 interface YoutubeApiRepository {
-    suspend fun searchVideos(
+    suspend fun getVideosWithDetails(
         channelId: String, pageToken: String?
     ): Either<Failure, VideoListResponse>
 }
