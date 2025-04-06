@@ -8,7 +8,7 @@ data class SearchResponseModel(
     @SerializedName("nextPageToken") val nextPageToken: String,
     @SerializedName("regionCode") val regionCode: String,
     @SerializedName("pageInfo") val pageInfo: PageInfo,
-    @SerializedName("items") val items: List<Item>,
+    @SerializedName("items") val items: MutableList<Item>,
 ) {
     companion object {
         data class Item(
