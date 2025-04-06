@@ -13,4 +13,9 @@ interface YoutubeApiRepository {
     suspend fun getComments(
         videoId: String, pageToken: String?
     ): Either<Failure, CommentThreadListResponse>
+
+    suspend fun getRelatedVideosWithDetails(
+        query: String,
+        pageToken: String?,
+    ): Either<Failure, VideoListResponse>
 }

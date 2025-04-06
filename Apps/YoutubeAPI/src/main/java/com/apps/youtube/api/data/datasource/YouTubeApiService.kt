@@ -1,6 +1,7 @@
 package com.apps.youtube.api.data.datasource
 
 import com.apps.youtube.api.BuildConfig
+import com.apps.youtube.api.data.models.ChannelListResponse
 import com.apps.youtube.api.data.models.CommentThreadListResponse
 import com.apps.youtube.api.data.models.SearchResponseModel
 import com.apps.youtube.api.data.models.VideoListResponse
@@ -59,4 +60,11 @@ interface YouTubeApiService {
         @Query("pageToken") pageToken: String? = null,
         @Query("order") order: String = "relevance"
     ): Response<CommentThreadListResponse>
+
+    @GET("channels")
+    suspend fun getChannelDetails(
+        @Query("key") apiKey: String = BuildConfig.YOUTUBE_API_KEY,
+        @Query("part") part: String = "snippet,statistics",
+        @Query("id") id: String
+    ): Response<ChannelListResponse>
 }

@@ -6,7 +6,7 @@ import java.util.Date
 data class VideoListResponse(
     @SerializedName("kind") val kind: String?,
     @SerializedName("etag") val etag: String?,
-    @SerializedName("items") val items: List<Video>?,
+    @SerializedName("items") val items: MutableList<Video> = mutableListOf(),
     @SerializedName("nextPageToken") var nextPageToken: String?,
     @SerializedName("pageInfo") val pageInfo: PageInfo?
 ) {
@@ -18,7 +18,7 @@ data class VideoListResponse(
             @SerializedName("snippet") val snippet: Snippet?,
             @SerializedName("contentDetails") val contentDetails: ContentDetails?,
             @SerializedName("statistics") val statistics: Statistics?,
-            @SerializedName("channelDetails") val channelDetails: ChannelDetails?
+            @SerializedName("channelDetails") var channelDetails: ChannelDetails?
         )
 
         data class Snippet(
