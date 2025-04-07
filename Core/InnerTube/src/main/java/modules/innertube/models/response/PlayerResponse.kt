@@ -1,6 +1,8 @@
 package modules.innertube.models.response
 
 import com.google.gson.annotations.SerializedName
+import modules.innertube.models.ResponseContext
+import modules.innertube.models.Thumbnails
 
 /**
  * PlayerResponse with [YouTubeClient.ANDROID_MUSIC] client
