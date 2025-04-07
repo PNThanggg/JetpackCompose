@@ -26,6 +26,7 @@ include(":Core:SmoothAnimationBottomBar")
 include(":Core:Common")
 include(":Core:LrcLib")
 include(":Core:UI")
+include(":Core:InnerTube")
 
 include(":Apps:TaskManager")
 include(":Apps:JCCleanArchitecture")
