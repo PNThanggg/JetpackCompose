@@ -1,6 +1,6 @@
 package jc.apps.music.models
 
-import com.zionhuang.innertube.models.YTItem
+import modules.innertube.models.YTItem
 
 data class ItemsPage(
     val items: List<YTItem>,
