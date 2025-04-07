@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "jc.apps.music"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
@@ -62,6 +62,17 @@ dependencies {
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.gson)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.androidx.datastore.preferences)
+
+    implementation(libs.shimmer)
+
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.session)
+    implementation(libs.media3.datasource.okhttp)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
