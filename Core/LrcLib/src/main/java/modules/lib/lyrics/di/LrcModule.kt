@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import modules.lib.lyrics.BuildConfig
 import modules.lib.lyrics.data.datasource.LrcApiService
 import modules.lib.lyrics.data.datasource.LrcRemoteDataSource
 import modules.lib.lyrics.data.repository.LrcRepositoryImpl
