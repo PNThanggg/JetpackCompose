@@ -1,6 +1,9 @@
 package modules.innertube.models.response
 
 import com.google.gson.annotations.SerializedName
+import modules.innertube.models.NavigationEndpoint
+import modules.innertube.models.PlaylistPanelRenderer
+import modules.innertube.models.Tabs
 
 data class NextResponse(
     @SerializedName("contents") val contents: Contents,
