@@ -1,6 +1,8 @@
 package modules.innertube.models.response
 
 import com.google.gson.annotations.SerializedName
+import modules.innertube.models.Continuation
+import modules.innertube.models.MusicResponsiveListItemRenderer
 import modules.innertube.models.Tabs
 
 data class SearchResponse(
