@@ -1,21 +1,19 @@
-package com.zionhuang.innertube.models
+package modules.innertube.models
 
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class PlaylistPanelRenderer(
-    val title: String?,
-    val titleText: Runs?,
-    val shortBylineText: Runs?,
-    val contents: List<Content>,
-    val isInfinite: Boolean,
-    val numItemsToShow: Int?,
-    val playlistId: String?,
-    val continuations: List<Continuation>?,
+    @SerializedName("title") val title: String?,
+    @SerializedName("titleText") val titleText: Runs?,
+    @SerializedName("shortBylineText") val shortBylineText: Runs?,
+    @SerializedName("contents") val contents: List<Content>,
+    @SerializedName("isInfinite") val isInfinite: Boolean,
+    @SerializedName("numItemsToShow") val numItemsToShow: Int?,
+    @SerializedName("playlistId") val playlistId: String?,
+    @SerializedName("continuations") val continuations: List<Continuation>?,
 ) {
-    @Serializable
     data class Content(
-        val playlistPanelVideoRenderer: PlaylistPanelVideoRenderer?,
-        val automixPreviewVideoRenderer: AutomixPreviewVideoRenderer?,
+        @SerializedName("playlistPanelVideoRenderer") val playlistPanelVideoRenderer: PlaylistPanelVideoRenderer?,
+        @SerializedName("automixPreviewVideoRenderer") val automixPreviewVideoRenderer: AutomixPreviewVideoRenderer?,
     )
 }
