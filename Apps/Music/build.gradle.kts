@@ -78,6 +78,7 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     implementation(project(":Core:LrcLib"))
+    implementation(project(":Core:InnerTube"))
 
     testImplementation(libs.junit)
 
