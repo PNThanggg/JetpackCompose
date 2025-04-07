@@ -1,9 +1,16 @@
 package modules.innertube.models.response
 
 import com.google.gson.annotations.SerializedName
+import modules.innertube.models.Button
+import modules.innertube.models.Continuation
 import modules.innertube.models.GridRenderer
+import modules.innertube.models.Menu
+import modules.innertube.models.MusicShelfRenderer
+import modules.innertube.models.ResponseContext
+import modules.innertube.models.Runs
 import modules.innertube.models.SectionListRenderer
 import modules.innertube.models.Tabs
+import modules.innertube.models.ThumbnailRenderer
 import modules.innertube.models.Thumbnails
 
 data class BrowseResponse(
