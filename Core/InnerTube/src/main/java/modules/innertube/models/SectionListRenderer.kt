@@ -1,6 +1,7 @@
 package modules.innertube.models
 
 import com.google.gson.annotations.SerializedName
+import modules.innertube.models.response.BrowseResponse
 
 data class SectionListRenderer(
     @SerializedName("header") val header: Header? = null,
