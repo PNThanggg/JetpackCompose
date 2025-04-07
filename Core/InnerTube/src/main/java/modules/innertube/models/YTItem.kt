@@ -1,7 +1,5 @@
 package modules.innertube.models
 
-import com.zionhuang.innertube.models.WatchEndpoint
-
 sealed class YTItem {
     abstract val id: String
     abstract val title: String
