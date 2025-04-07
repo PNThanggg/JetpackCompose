@@ -1,3 +1,5 @@
+package modules.innertube.models
+
 import com.google.gson.annotations.SerializedName
 
 data class Badges(
