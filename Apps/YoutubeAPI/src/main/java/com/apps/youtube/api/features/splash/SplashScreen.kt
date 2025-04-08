@@ -23,12 +23,18 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(
-    navController: NavController,
+    navController: NavController, lastLogin: Boolean
 ) {
     LaunchedEffect(Unit) {
         delay(500)
 
-        navController.navigate(Screen.Home.route) {
+        val destination = if (lastLogin) {
+            Screen.Home.route
+        } else {
+            Screen.Login.route
+        }
+
+        navController.navigate(destination) {
             popUpTo(Screen.Splash.route) {
                 inclusive = true
             }
@@ -46,7 +52,9 @@ fun SplashScreen(
             contentAlignment = Alignment.Center,
         ) {
             Image(
-                modifier = Modifier.width(240.dp).height(240.dp),
+                modifier = Modifier
+                    .width(240.dp)
+                    .height(240.dp),
                 painter = painterResource(id = R.drawable.ic_logo_splash),
                 contentDescription = stringResource(id = R.string.app_name)
             )
