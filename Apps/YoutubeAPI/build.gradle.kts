@@ -15,6 +15,8 @@ if (localPropertiesFile.exists()) {
 }
 
 private val youtubeApiKey: String = localProperties.getProperty("youtube_api_key") ?: ""
+private val youtubeAppClientId: String = localProperties.getProperty("youtube_app_client_id") ?: ""
+private val youtubeAppClientSecret: String = localProperties.getProperty("youtube_app_client_secret") ?: ""
 
 android {
     namespace = "com.apps.youtube.api"
@@ -35,6 +37,8 @@ android {
             isMinifyEnabled = false
 
             buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
+            buildConfigField("String", "YOUTUBE_APP_CLIENT_ID", "\"$youtubeAppClientId\"")
+            buildConfigField("String", "YOUTUBE_APP_CLIENT_SECRET", "\"$youtubeAppClientSecret\"")
 
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
@@ -43,6 +47,8 @@ android {
 
         debug {
             buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
+            buildConfigField("String", "YOUTUBE_APP_CLIENT_ID", "\"$youtubeAppClientId\"")
+            buildConfigField("String", "YOUTUBE_APP_CLIENT_SECRET", "\"$youtubeAppClientSecret\"")
         }
     }
     compileOptions {
