@@ -15,10 +15,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.apps.youtube.api.datastore.repository.LocalPreferencesRepository
+import com.apps.youtube.api.domain.usecase.GetSubscriptionsUseCase
 import com.apps.youtube.api.features.home.HomeScreen
 import com.apps.youtube.api.features.home.HomeViewModel
 import com.apps.youtube.api.features.login.LoginScreen
@@ -30,6 +33,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import modules.core.theme.JetpackComposeTheme
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -38,6 +43,7 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import org.json.JSONObject
 import timber.log.Timber
+import javax.inject.Inject
 
 private const val TAG = "MainActivity"
 
@@ -57,6 +63,12 @@ class MainActivity : ComponentActivity() {
     }
 
     private lateinit var signInLauncher: ActivityResultLauncher<Intent>
+
+    @Inject
+    lateinit var localPreferencesRepository: LocalPreferencesRepository
+
+    @Inject
+    lateinit var getSubscriptions: GetSubscriptionsUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -165,7 +177,7 @@ class MainActivity : ComponentActivity() {
             return
         }
 
-        Thread(Runnable {
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val client = OkHttpClient()
 
@@ -188,6 +200,13 @@ class MainActivity : ComponentActivity() {
                 responseData?.let {
                     val jsonObject = JSONObject(it)
                     val accessToken = jsonObject.getString("access_token")
+
+                    localPreferencesRepository.updateApplicationPreferences {
+                        it.copy(
+                            accessToken = accessToken
+                        )
+                    }
+
                     getSubscriptions(accessToken)
                 } ?: run {
                     Timber.tag(TAG).e("Response data is null")
@@ -195,24 +214,25 @@ class MainActivity : ComponentActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }).start()
+        }
     }
 
-    private fun getSubscriptions(accessToken: String?) {
-        Thread(Runnable {
+    private fun getSubscriptions(accessToken: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val client = OkHttpClient()
-                val request: Request = Request.Builder()
-                    .url("https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true")
-                    .addHeader("Authorization", "Bearer $accessToken").build()
+//                val client = OkHttpClient()
+//                val request: Request = Request.Builder()
+//                    .url("https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true")
+//                    .addHeader("Authorization", "Bearer $accessToken").build()
+//                val response = client.newCall(request).execute()
+//                val responseData: String? = response.body!!.string()
+//                Timber.tag(TAG).d("$responseData")
 
-                val response = client.newCall(request).execute()
-                val responseData: String? = response.body!!.string()
-                Timber.tag(TAG).d("$responseData")
+                getSubscriptions.run(accessToken)
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
-        }).start()
+        }
     }
 }
 

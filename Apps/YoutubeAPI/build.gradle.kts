@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val localProperties = Properties()
@@ -83,6 +84,10 @@ dependencies {
     implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.gson)
+
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.androidx.datastore.core)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
