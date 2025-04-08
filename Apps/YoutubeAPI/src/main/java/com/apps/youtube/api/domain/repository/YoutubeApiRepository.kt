@@ -7,7 +7,9 @@ import modules.common.failure.Failure
 import modules.common.functional.Either
 
 interface YoutubeApiRepository {
-    suspend fun getSubscriptions(): Either<Failure, SubscriptionListResponse>
+    suspend fun getSubscriptions(
+        accessToken: String,
+    ): Either<Failure, SubscriptionListResponse>
 
     suspend fun getVideosWithDetails(
         channelId: String, pageToken: String?

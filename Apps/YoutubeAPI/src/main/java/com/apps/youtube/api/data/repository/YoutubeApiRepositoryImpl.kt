@@ -13,8 +13,10 @@ import javax.inject.Inject
 class YoutubeApiRepositoryImpl @Inject constructor(
     private val apiService: YouTubeApiService,
 ) : YoutubeApiRepository {
-    override suspend fun getSubscriptions(): Either<Failure, SubscriptionListResponse> {
-        val response = apiService.getSubscriptions()
+    override suspend fun getSubscriptions(
+        accessToken: String,
+    ): Either<Failure, SubscriptionListResponse> {
+        val response = apiService.getSubscriptions(accessToken)
 
         if (!response.isSuccessful) {
             return Either.Left(ServerError(response.message()))

@@ -8,11 +8,13 @@ import com.apps.youtube.api.data.models.SubscriptionListResponse
 import com.apps.youtube.api.data.models.VideoListResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface YouTubeApiService {
     @GET("subscriptions")
     suspend fun getSubscriptions(
+        @Header("Authorization") accessToken: String,
         @Query("part") part: String = "snippet",
         @Query("channelId") channelId: String? = null,
         @Query("id") id: String? = null,
