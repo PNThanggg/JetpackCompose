@@ -36,6 +36,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
+import org.json.JSONObject
 import timber.log.Timber
 
 private const val TAG = "MainActivity"
@@ -169,16 +170,12 @@ class MainActivity : ComponentActivity() {
                 val client = OkHttpClient()
 
                 val formBody: RequestBody = FormBody.Builder().add("code", authCode).add(
-                    "client_id",
-                    "235335870724-j9o6qv3csk4rt81d8upgutk8q87hal1v.apps.googleusercontent.com"
-                ) // Thay bằng Client ID từ Google Cloud
-                    .add(
-                        "client_secret", "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"
-                    ) // Thay bằng Client Secret
-                    .add(
-                        "redirect_uri", "urn:ietf:wg:oauth:2.0:oob"
-                    ) // URI mặc định cho ứng dụng Android
-                    .add("grant_type", "authorization_code").build()
+                    "client_id", BuildConfig.YOUTUBE_APP_CLIENT_ID
+                ).add(
+                    "client_secret", BuildConfig.YOUTUBE_APP_CLIENT_SECRET
+                ).add(
+                    "redirect_uri", "urn:ietf:wg:oauth:2.0:oob"
+                ).add("grant_type", "authorization_code").build()
 
                 val request: Request =
                     Request.Builder().url("https://oauth2.googleapis.com/token").post(formBody)
@@ -188,7 +185,31 @@ class MainActivity : ComponentActivity() {
                 val responseData: String? = response.body!!.string()
 
                 Timber.tag(TAG).d("$responseData")
+                responseData?.let {
+                    val jsonObject = JSONObject(it)
+                    val accessToken = jsonObject.getString("access_token")
+                    getSubscriptions(accessToken)
+                } ?: run {
+                    Timber.tag(TAG).e("Response data is null")
+                }
             } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }).start()
+    }
+
+    private fun getSubscriptions(accessToken: String?) {
+        Thread(Runnable {
+            try {
+                val client = OkHttpClient()
+                val request: Request = Request.Builder()
+                    .url("https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true")
+                    .addHeader("Authorization", "Bearer $accessToken").build()
+
+                val response = client.newCall(request).execute()
+                val responseData: String? = response.body!!.string()
+                Timber.tag(TAG).d("$responseData")
+            } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
         }).start()

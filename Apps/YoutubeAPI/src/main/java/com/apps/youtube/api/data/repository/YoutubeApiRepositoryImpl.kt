@@ -2,6 +2,7 @@ package com.apps.youtube.api.data.repository
 
 import com.apps.youtube.api.data.datasource.YouTubeApiService
 import com.apps.youtube.api.data.models.CommentThreadListResponse
+import com.apps.youtube.api.data.models.SubscriptionListResponse
 import com.apps.youtube.api.data.models.VideoListResponse
 import com.apps.youtube.api.domain.repository.YoutubeApiRepository
 import modules.common.failure.Failure
@@ -12,6 +13,20 @@ import javax.inject.Inject
 class YoutubeApiRepositoryImpl @Inject constructor(
     private val apiService: YouTubeApiService,
 ) : YoutubeApiRepository {
+    override suspend fun getSubscriptions(): Either<Failure, SubscriptionListResponse> {
+        val response = apiService.getSubscriptions()
+
+        if (!response.isSuccessful) {
+            return Either.Left(ServerError(response.message()))
+        }
+
+        if (response.body() == null) {
+            return Either.Left(ServerError("No data found"))
+        }
+
+        return Either.Right(response.body()!!)
+    }
+
     override suspend fun getVideosWithDetails(
         channelId: String, pageToken: String?
     ): Either<Failure, VideoListResponse> {

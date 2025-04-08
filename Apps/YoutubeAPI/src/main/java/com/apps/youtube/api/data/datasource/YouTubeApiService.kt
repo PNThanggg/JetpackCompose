@@ -4,12 +4,27 @@ import com.apps.youtube.api.BuildConfig
 import com.apps.youtube.api.data.models.ChannelListResponse
 import com.apps.youtube.api.data.models.CommentThreadListResponse
 import com.apps.youtube.api.data.models.SearchResponseModel
+import com.apps.youtube.api.data.models.SubscriptionListResponse
 import com.apps.youtube.api.data.models.VideoListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface YouTubeApiService {
+    @GET("subscriptions")
+    suspend fun getSubscriptions(
+        @Query("part") part: String = "snippet",
+        @Query("channelId") channelId: String? = null,
+        @Query("id") id: String? = null,
+        @Query("mine") mine: Boolean = true,
+        @Query("myRecentSubscribers") myRecentSubscribers: Boolean = false,
+        @Query("mySubscribers") mySubscribers: Boolean =  false,
+        @Query("forChannelId") forChannelId: String? = null,
+        @Query("maxResults") maxResults: Int = 5,
+        @Query("order") order: String = "alphabetical",
+        @Query("pageToken") pageToken: String? = null,
+    ): Response<SubscriptionListResponse>
+
     @GET("search")
     suspend fun searchVideos(
         @Query("key") apiKey: String = BuildConfig.YOUTUBE_API_KEY,
