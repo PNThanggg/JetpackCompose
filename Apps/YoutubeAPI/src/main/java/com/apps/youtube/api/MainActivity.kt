@@ -91,7 +91,7 @@ class MainActivity : ComponentActivity() {
                         val token = account?.idToken
                         Timber.tag(TAG).d("Đăng nhập thành công: $token")
 
-                        handleSignInResult(account)
+                        exchangeAuthCodeForToken(account)
                     } catch (e: ApiException) {
                         Timber.tag(TAG).e(e, "Đăng nhập thất bại: ${e.statusCode}")
                     }
@@ -160,19 +160,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun handleSignInResult(account: GoogleSignInAccount) {
-        val accessToken = account.serverAuthCode // Code để lấy Access Token
-        val email = account.email
-
-        Timber.tag(TAG).d("Email: $email")
-        Timber.tag(TAG).d("Server Auth Code: $accessToken")
-
-        // Gửi auth code này đến server hoặc tự đổi lấy access token
-        exchangeAuthCodeForToken(accessToken)
-    }
-
-    private fun exchangeAuthCodeForToken(authCode: String?) {
-        if (authCode == null) {
+    private fun exchangeAuthCodeForToken(account: GoogleSignInAccount) {
+        if (account.serverAuthCode == null) {
             Toast.makeText(this@MainActivity, "Auth code is null", Toast.LENGTH_SHORT).show()
             return
         }
@@ -181,13 +170,14 @@ class MainActivity : ComponentActivity() {
             try {
                 val client = OkHttpClient()
 
-                val formBody: RequestBody = FormBody.Builder().add("code", authCode).add(
-                    "client_id", BuildConfig.YOUTUBE_APP_CLIENT_ID
-                ).add(
-                    "client_secret", BuildConfig.YOUTUBE_APP_CLIENT_SECRET
-                ).add(
-                    "redirect_uri", "urn:ietf:wg:oauth:2.0:oob"
-                ).add("grant_type", "authorization_code").build()
+                val formBody: RequestBody =
+                    FormBody.Builder().add("code", account.serverAuthCode!!).add(
+                        "client_id", BuildConfig.YOUTUBE_APP_CLIENT_ID
+                    ).add(
+                        "client_secret", BuildConfig.YOUTUBE_APP_CLIENT_SECRET
+                    ).add(
+                        "redirect_uri", "urn:ietf:wg:oauth:2.0:oob"
+                    ).add("grant_type", "authorization_code").build()
 
                 val request: Request =
                     Request.Builder().url("https://oauth2.googleapis.com/token").post(formBody)
