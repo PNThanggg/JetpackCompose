@@ -1,5 +1,6 @@
 package modules.innertube.utils
 
+import modules.innertube.YouTube
 import modules.innertube.pages.PlaylistPage
 import java.security.MessageDigest
 
