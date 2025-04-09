@@ -1,6 +1,10 @@
 package jc.apps.music.models
 
 import androidx.compose.runtime.Immutable
+import jc.apps.music.db.entities.Song
+import jc.apps.music.db.entities.SongEntity
+import jc.apps.music.extensions.resize
+import modules.innertube.models.SongItem
 import java.io.Serializable
 
 @Immutable
