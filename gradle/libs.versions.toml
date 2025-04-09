@@ -92,6 +92,8 @@ accompanist-permissions = { module = "com.google.accompanist:accompanist-permiss
 androidx-datastore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidx-data-store" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
 
+apache-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.12.0" }
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-version" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
