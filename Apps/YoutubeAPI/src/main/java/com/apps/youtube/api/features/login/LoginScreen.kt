@@ -21,14 +21,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.apps.youtube.api.R
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.Response
-import timber.log.Timber
-
-private const val TAG = "LoginScreen"
 
 @PreviewLightDark()
 @Composable
