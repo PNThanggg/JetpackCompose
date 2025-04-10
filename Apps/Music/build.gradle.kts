@@ -90,6 +90,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
+    implementation(project(":Core:Theme"))
     implementation(project(":Core:LrcLib"))
     implementation(project(":Core:InnerTube"))
 
