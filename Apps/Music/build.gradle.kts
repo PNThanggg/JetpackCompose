@@ -67,6 +67,9 @@ dependencies {
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.gson)
 
+    implementation(libs.guava)
+    implementation(libs.coroutines.guava)
+
     implementation(libs.apache.lang3)
 
     implementation(libs.room.runtime)
