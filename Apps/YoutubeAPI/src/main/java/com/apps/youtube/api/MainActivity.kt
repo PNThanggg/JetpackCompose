@@ -11,19 +11,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.platform.LocalContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.apps.youtube.api.datastore.repository.LocalPreferencesRepository
 import com.apps.youtube.api.domain.usecase.GetSubscriptionsUseCase
 import com.apps.youtube.api.features.home.HomeScreen
-import com.apps.youtube.api.features.home.HomeViewModel
 import com.apps.youtube.api.features.login.LoginScreen
 import com.apps.youtube.api.features.splash.SplashScreen
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -140,19 +135,6 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(Screen.Home.route) {
-                        val viewModel = viewModel<HomeViewModel>()
-                        val state = viewModel.state.collectAsStateWithLifecycle()
-
-                        val context = LocalContext.current
-
-                        LaunchedEffect(key1 = state.value.isSignInSuccessful) {
-                            if (state.value.isSignInSuccessful) {
-                                Toast.makeText(
-                                    context, "Sign in successful", Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-
                         HomeScreen()
                     }
                 }
