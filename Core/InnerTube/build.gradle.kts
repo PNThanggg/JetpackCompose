@@ -1,7 +1,17 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
+
+private val youtubeApiKey: String = localProperties.getProperty("youtube_api_key") ?: ""
 
 android {
     namespace = "modules.innertube"
@@ -17,10 +27,17 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+
+            buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        debug {
+            buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeApiKey\"")
         }
     }
     compileOptions {
@@ -29,6 +46,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
