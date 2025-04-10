@@ -62,8 +62,6 @@ fun CategoriesLine(
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                 )
 
-                Spacer(modifier = Modifier.width(8.dp))
-
                 Text(
                     text = "Explore", color = if (isDarkTheme) {
                         Color.White
