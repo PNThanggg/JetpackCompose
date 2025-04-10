@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/shortcut_search"
+        android:shortcutId="search"
+        android:shortcutShortLabel="@string/search">
+        <intent
+            android:action="jc.apps.music.SEARCH"
+            android:targetClass="jc.apps.music.MainActivity"
+            android:targetPackage="jc.apps.music" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/shortcut_songs"
+        android:shortcutId="songs"
+        android:shortcutShortLabel="@string/songs">
+        <intent
+            android:action="jc.apps.music.action.SONGS"
+            android:targetClass="jc.apps.music.MainActivity"
+            android:targetPackage="jc.apps.music" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/shortcut_albums"
+        android:shortcutId="albums"
+        android:shortcutShortLabel="@string/albums">
+        <intent
+            android:action="jc.apps.music.action.ALBUMS"
+            android:targetClass="jc.apps.music.MainActivity"
+            android:targetPackage="jc.apps.music" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/shortcut_playlists"
+        android:shortcutId="playlists"
+        android:shortcutShortLabel="@string/playlists">
+        <intent
+            android:action="jc.apps.music.action.PLAYLISTS"
+            android:targetClass="jc.apps.music.MainActivity"
+            android:targetPackage="jc.apps.music" />
+    </shortcut>
+</shortcuts>
