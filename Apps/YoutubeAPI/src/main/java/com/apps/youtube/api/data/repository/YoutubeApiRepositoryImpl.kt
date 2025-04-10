@@ -1,6 +1,7 @@
 package com.apps.youtube.api.data.repository
 
 import com.apps.youtube.api.data.datasource.YouTubeApiService
+import com.apps.youtube.api.data.models.ChannelListResponse
 import com.apps.youtube.api.data.models.CommentThreadListResponse
 import com.apps.youtube.api.data.models.SubscriptionListResponse
 import com.apps.youtube.api.data.models.VideoListResponse
@@ -74,6 +75,26 @@ class YoutubeApiRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             return Either.Left(ServerError(e.message ?: "Unknown error"))
         }
+    }
+
+    override suspend fun getMyChannelDetail(
+        accessToken: String, maxResults: Int?, pageToken: String?
+    ): Either<Failure, ChannelListResponse> {
+        val response = apiService.getMyChannelDetail(
+            accessToken = accessToken,
+            pageToken = pageToken,
+            maxResults = maxResults,
+        )
+
+        if (!response.isSuccessful) {
+            return Either.Left(ServerError(response.message()))
+        }
+
+        if (response.body() == null) {
+            return Either.Left(ServerError("No data found"))
+        }
+
+        return Either.Right(response.body()!!)
     }
 
     override suspend fun getComments(

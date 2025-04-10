@@ -27,6 +27,18 @@ interface YouTubeApiService {
         @Query("pageToken") pageToken: String? = null,
     ): Response<SubscriptionListResponse>
 
+    @GET("channels")
+    suspend fun getMyChannelDetail(
+        @Header("Authorization") accessToken: String,
+        @Query("key") apiKey: String = BuildConfig.YOUTUBE_API_KEY,
+        @Query("part") part: String = "snippet,statistics",
+        @Query("mine") mine: Boolean = true,
+        @Query("hl") hl: String? = null,
+        @Query("maxResults") maxResults: Int? = null,
+        @Query("onBehalfOfContentOwner") onBehalfOfContentOwner: String? = null,
+        @Query("pageToken") pageToken: String? = null,
+    ): Response<ChannelListResponse>
+
     @GET("search")
     suspend fun searchVideos(
         @Query("key") apiKey: String = BuildConfig.YOUTUBE_API_KEY,
