@@ -69,6 +69,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
+    implementation(project(":Core:Theme"))
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
