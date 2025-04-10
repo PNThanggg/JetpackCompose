@@ -11,7 +11,7 @@ import javax.inject.Inject
 class LyricsHelper @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
-    private val lyricsProviders = listOf(YouTubeSubtitleLyricsProvider, LrcLibLyricsProvider(), YouTubeLyricsProvider)
+    private val lyricsProviders = listOf(YouTubeSubtitleLyricsProvider, YouTubeLyricsProvider)
     private val cache = LruCache<String, List<LyricsResult>>(MAX_CACHE_SIZE)
 
     suspend fun getLyrics(mediaMetadata: MediaMetadata): String {
@@ -53,9 +53,9 @@ class LyricsHelper @Inject constructor(
         val allResult = mutableListOf<LyricsResult>()
         lyricsProviders.forEach { provider ->
             if (provider.isEnabled(context)) {
-               val lyrics = provider.getAllLyrics(mediaId, songTitle, songArtists, duration)
+                val lyrics = provider.getAllLyrics(mediaId, songTitle, songArtists, duration)
 
-                val result = LyricsResult(provider.name, lyrics)
+                val result = LyricsResult(provider.name, lyrics.getOrNull()!!.first())
                 allResult += result
                 callback(result)
             }
