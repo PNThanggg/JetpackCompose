@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import jc.apps.clean_architecture.store.presentation.screen.ProductsScreen
-import jc.apps.clean_architecture.ui.theme.JetpackComposeTheme
+import modules.core.theme.JetpackComposeTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
