@@ -101,6 +101,9 @@ dependencies {
 
     implementation(libs.google.auth)
 
+    implementation(libs.mlkit.language.id)
+    implementation(libs.mlkit.translate)
+
     implementation(project(":Core:Theme"))
     implementation(project(":Core:Logger"))
     implementation(project(":Core:Common"))
