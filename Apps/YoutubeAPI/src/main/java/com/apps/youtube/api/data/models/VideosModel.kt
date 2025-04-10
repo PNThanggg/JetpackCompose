@@ -6,9 +6,10 @@ import java.util.Date
 data class VideoListResponse(
     @SerializedName("kind") val kind: String?,
     @SerializedName("etag") val etag: String?,
-    @SerializedName("items") val items: MutableList<Video> = mutableListOf(),
     @SerializedName("nextPageToken") val nextPageToken: String?,
-    @SerializedName("pageInfo") val pageInfo: PageInfo?
+    @SerializedName("prevPageToken") val prevPageToken: String?,
+    @SerializedName("pageInfo") val pageInfo: PageInfo?,
+    @SerializedName("items") val items: MutableList<Video> = mutableListOf(),
 ) {
     companion object {
         data class Video(
