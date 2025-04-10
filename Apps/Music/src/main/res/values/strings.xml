@@ -310,6 +310,7 @@
 
     <string name="backup_restore">Backup and restore</string>
     <string name="backup">Backup</string>
+    <string name="cancel">Cancel</string>
     <string name="restore">Restore</string>
     <string name="imported_playlist">Imported playlist</string>
     <string name="backup_create_success">Backup created successfully</string>
