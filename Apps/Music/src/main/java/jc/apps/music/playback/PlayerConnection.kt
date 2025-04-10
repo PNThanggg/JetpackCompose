@@ -10,6 +10,7 @@ import androidx.media3.common.Player.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM
 import androidx.media3.common.Player.REPEAT_MODE_OFF
 import androidx.media3.common.Player.STATE_ENDED
 import androidx.media3.common.Timeline
+import androidx.media3.common.util.UnstableApi
 import jc.apps.music.constants.TranslateLyricsKey
 import jc.apps.music.db.MusicDatabase
 import jc.apps.music.db.entities.LyricsEntity.Companion.LYRICS_NOT_FOUND
@@ -33,6 +34,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 @OptIn(ExperimentalCoroutinesApi::class)
+@androidx.annotation.OptIn(UnstableApi::class)
 class PlayerConnection(
     context: Context,
     binder: MusicBinder,
