@@ -3,7 +3,7 @@ package jc.apps.clean_architecture.store.presentation.screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jc.apps.clean_architecture.store.domain.repository.ProductsRepository
+import jc.apps.clean_architecture.store.domain.usecase.GetProductsUseCase
 import jc.apps.clean_architecture.store.presentation.sendEvent
 import jc.apps.clean_architecture.utils.Event
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductsViewModel @Inject constructor(
-    private val productsRepository: ProductsRepository
+    private val getProductsUseCase: GetProductsUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(ProductsViewState())
@@ -28,7 +28,7 @@ class ProductsViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
 
-            productsRepository.getProducts().fold(
+            getProductsUseCase.invoke().fold(
                 fnL = { error ->
 
                     _state.update {
