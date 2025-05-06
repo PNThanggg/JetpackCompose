@@ -24,14 +24,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.apps.youtube.api.MainViewModel
+import com.apps.youtube.api.features.profile.ProfileTabContent
 
 @PreviewLightDark()
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    mainViewModel: MainViewModel = hiltViewModel<MainViewModel>()
+) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
@@ -56,7 +61,9 @@ fun HomeScreen() {
             }
 
             composable(BottomNavScreen.Profile.route) {
-                ProfileTabContent()
+                ProfileTabContent(
+                    mainViewModel = mainViewModel,
+                )
             }
         }
     }
@@ -141,18 +148,5 @@ fun NotificationsTabContent() {
         verticalArrangement = Arrangement.Center
     ) {
         Text("Notifications Tab")
-    }
-}
-
-@Composable
-fun ProfileTabContent() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Profile Tab")
     }
 }

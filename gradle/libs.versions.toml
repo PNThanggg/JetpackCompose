@@ -10,6 +10,7 @@ material = "1.12.0"
 
 ksp = "2.1.10-1.0.30"
 dragger-hilt = "2.54"
+hilt-navigation-compose = "1.2.0"
 
 navigation = "2.8.9"
 
@@ -52,6 +53,7 @@ timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" 
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dragger-hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dragger-hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }

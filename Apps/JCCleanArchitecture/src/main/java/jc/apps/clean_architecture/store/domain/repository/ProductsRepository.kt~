@@ -1,0 +1,9 @@
+package jc.apps.clean_architecture.store.domain.repository
+
+import arrow.core.Either
+import jc.apps.clean_architecture.store.domain.model.NetworkError
+import jc.apps.clean_architecture.store.domain.model.Product
+
+interface ProductsRepository {
+    suspend fun getProducts(): Either<NetworkError, List<Product>>
+}

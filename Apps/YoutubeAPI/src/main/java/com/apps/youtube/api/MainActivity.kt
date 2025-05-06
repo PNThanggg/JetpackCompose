@@ -9,17 +9,20 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.apps.youtube.api.datastore.repository.LocalPreferencesRepository
-import com.apps.youtube.api.domain.usecase.GetSubscriptionsUseCase
 import com.apps.youtube.api.features.home.HomeScreen
 import com.apps.youtube.api.features.login.LoginScreen
+import com.apps.youtube.api.features.login.LoginViewModel
 import com.apps.youtube.api.features.splash.SplashScreen
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -62,8 +65,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var localPreferencesRepository: LocalPreferencesRepository
 
-    @Inject
-    lateinit var getSubscriptions: GetSubscriptionsUseCase
+    val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +100,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeTheme {
                 val navController = rememberNavController()
+                val loginState = loginViewModel.loginState.collectAsState()
+                LaunchedEffect(loginState) {
+                    when (loginState) {
+                        is LoginViewModel.LoginState.Success -> {
+                            navController.navigate(Screen.Home.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
+                            }
+                        }
+
+                        else -> {}
+                    }
+                }
 
                 NavHost(
                     navController = navController,
@@ -179,29 +193,11 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
-                    getSubscriptions(accessToken)
+                    loginViewModel.onLoginSuccess()
                 } ?: run {
                     Timber.tag(TAG).e("Response data is null")
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    private fun getSubscriptions(accessToken: String) {
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-//                val client = OkHttpClient()
-//                val request: Request = Request.Builder()
-//                    .url("https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true")
-//                    .addHeader("Authorization", "Bearer $accessToken").build()
-//                val response = client.newCall(request).execute()
-//                val responseData: String? = response.body!!.string()
-//                Timber.tag(TAG).d("$responseData")
-
-                getSubscriptions.run(accessToken)
-            } catch (e: java.lang.Exception) {
                 e.printStackTrace()
             }
         }

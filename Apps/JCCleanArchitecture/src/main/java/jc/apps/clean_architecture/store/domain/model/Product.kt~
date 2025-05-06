@@ -1,0 +1,4 @@
+package jc.apps.clean_architecture.store.domain.model
+
+class Product {
+}

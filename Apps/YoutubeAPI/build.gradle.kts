@@ -91,7 +91,10 @@ dependencies {
     implementation(libs.androidx.datastore.core)
 
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.coil.compose)
 
     implementation(libs.androidx.core.splash)
 
